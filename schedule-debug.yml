@@ -1,0 +1,16 @@
+name: Schedule Debug
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+      timezone: 'Asia/Seoul'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "event=${{ github.event_name }}"
+          echo "UTC=$(date -u)"
+          echo "KST=$(TZ=Asia/Seoul date)"
